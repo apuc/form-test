@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Script items</title>
+    <link href="../css/validation.css" rel="stylesheet">
+    <script src="../js/validation.js"></script>
+</head>
+<body>
+<div class="form-box">
+    <form action="#">
+        <p>
+            <label for="v_login">Логин</label>
+            <input id="v_login" data-url="../php/ajax.php" name="v_login" type="text" class="vItem" required>
+        </p>
+        <p>
+            <label for="v_name">Имя</label>
+            <input id="v_name" name="v_name" type="text" class="vItem" required>
+        </p>
+        <p>
+            <label for="v_phone">Телефон</label>
+            <input id="v_phone" name="v_phone" type="text" class="vItem" required>
+        </p>
+        <p>
+            <input id="subm" type="submit" value="Отправить">
+        </p>
+    </form>
+</div>
+<script>
+    var valid = new Validation();
+
+    valid.addTpl('kl', /^[a-zA-ZА-Яа-яЁё\s]+$/, 'ghghghghghg');
+
+    valid.init({
+        classItem: 'vItem',
+        eventElement: '#subm',
+        event:'onblur',
+        ajax:true,
+        ajaxUrl:'../php/ajax.php',
+        items: [
+            {
+                item:'v_login',
+                promptMsg:'Напишите свой логин',
+                successMsg:'Все верно',
+                tpl:'kl',
+                errorClass:'inputEr',
+                successClass:'inputSc',
+                errorMsgClass:'msgEr',
+                promptMsgClass:'msgPt',
+                successMsgClass:'msgSc'
+            },
+            {
+                item:'v_name',
+                promptMsg:'Напишите свое имя',
+                successMsg:'Все верно',
+                tpl:'kir',
+                tplMsg: 'Только кириллица'
+            },
+            {
+                item:'v_phone',
+                promptMsg:'Напишите свой телефон',
+                successMsg:'Все верно',
+                tpl:'number',
+                tplMsg: 'Только цифры'
+            }
+        ],
+        submitError: function (err, form) {
+            alert('Ошибка в заполнении');
+        },
+        submitSuccess: function (err, form) {
+            if (!err) {
+                //form.submit();
+                alert('Все верно');
+            }
+        },
+        ajaxSubmitSuccess: function (responseText, err, form) {
+            if (!err) {
+                //form.submit();
+                console.log(responseText);
+            }
+        },
+        ajaxOnblurSuccess: function (responseText, err, form) {
+            if (!err) {
+                //form.submit();
+                console.log(responseText);
+            }
+        },
+    });
+</script>
+</body>
+</html>

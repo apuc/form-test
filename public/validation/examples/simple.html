@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple</title>
+    <link href="../css/validation.css" rel="stylesheet">
+    <script src="../js/validation.js"></script>
+</head>
+<body>
+<div class="form-box">
+    <form action="#">
+        <p>
+            <label for="v_login">Логин</label>
+            <input id="v_login" name="v_login" type="text" class="vItem" data-success="Верно" data-prompt="Введите логин" data-msg="Обязательное поле" required>
+        </p>
+        <p>
+            <label for="v_name">Имя</label>
+            <input id="v_name" name="v_name" type="text" class="vItem" data-success="Верно" data-prompt="Введите имя" data-msg="Обязательное поле" required>
+        </p>
+        <p>
+            <label for="v_phone">Телефон</label>
+            <input id="v_phone" name="v_phone" type="text" class="vItem" data-success="Верно" data-prompt="Введите телефон" data-msg="Обязательное поле" required>
+        </p>
+        <p>
+            <input id="subm" type="submit" value="Отправить">
+        </p>
+    </form>
+</div>
+<script>
+    var valid = new Validation();
+    valid.init({
+        classItem: 'vItem',
+        eventElement: '#subm'
+    });
+</script>
+</body>
+</html>

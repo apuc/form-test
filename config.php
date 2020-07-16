@@ -1,10 +1,11 @@
 <?php
 
-define('DBDRIVER', 'mysql');
-define('DBHOST', 'localhost');
-define('DBNAME', 'first');
-define('DBUSER', 'root');
-define('DBPASSWORD', '');
+define('DB_DRIVER', 'mysql');
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'first');
+define('DB_USER', 'root');
+define('DB_PASSWORD', '');
+define('DB_PORT', 3306);
 
 define('SMTP_CHARSET', 'utf-8');
 define('SMTP_HOST', 'smtp.yandex.ru');

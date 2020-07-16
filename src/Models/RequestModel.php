@@ -15,20 +15,27 @@ class RequestModel extends Model
     protected $table = 'request';
     protected $fillable = ['city_id', 'user_id', 'request'];
 
-    public static function insertRequest($city_id, $user_id, $request)
+    /**
+     * @param $city_id
+     * @param $user_id
+     * @param $request
+     * @return int
+     */
+    public static function insertRequest($city_id, $user_id, $request): int
     {
-        $request = RequestModel::create([
-            'city_id' => $city_id,
-            'user_id' => $user_id,
-            'request' => $request
-        ]);
-        return $request;
+        $request_model = new RequestModel();
+        $request_model->city_id = strip_tags($city_id);
+        $request_model->user_id = strip_tags($user_id);
+        $request_model->request = strip_tags($request);
+        $request_model->save();
+
+        return $request_model->id;
     }
 
     /**
      * @return array
      */
-    public static function selectAllRequest()
+    public static function selectAllRequest(): array
     {
         $requests = RequestModel::with('city')->with('user')->get()->toArray();
         return $requests;

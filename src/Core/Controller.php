@@ -9,6 +9,8 @@ use Exception;
 /**
  * Class Controller
  * @package App\Core
+ * @property string $view
+ * @property string $layout
  */
 abstract class Controller
 {
@@ -26,6 +28,9 @@ abstract class Controller
         $this->init();
     }
 
+    /**
+     * Init view and layout for this controller
+     */
     protected function init()
     {
         $this->view = 'main/index';
@@ -37,7 +42,7 @@ abstract class Controller
      * @return string
      * @throws Exception
      */
-    public function render(array $arr = null)
+    public function render(array $arr = null): string
     {
         try {
             if (is_null($this->layout) OR is_null($this->view)) {

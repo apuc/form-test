@@ -14,7 +14,10 @@ class CityModel extends Model
     protected $table = 'city';
     protected $fillable = ['id', 'city'];
 
-    public static function selectAllArray()
+    /**
+     * @return array
+     */
+    public static function selectAllArray(): array
     {
         return self::all()->toArray();
     }

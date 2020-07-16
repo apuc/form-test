@@ -5,6 +5,8 @@
 @section('content')
 
     <script src="../public/js/ajax/ajax_request_validation.js"></script>
+    <link href="../public/validation/css/validation.css" rel="stylesheet">
+    <script src="../public/validation/js/validation.js"></script>
     <div class="m-4">
         <h3>Заполнение заявки</h3>
         <form name="request-form" id="request-form" method="post">

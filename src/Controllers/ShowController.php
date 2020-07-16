@@ -7,7 +7,12 @@ namespace App\Controllers;
 use App\Core\Controller;
 use App\Models\CityModel;
 use App\Models\RequestModel;
+use App\Requests\RequestRequest;
 
+/**
+ * Class ShowController
+ * @package App\Controllers
+ */
 class ShowController extends Controller
 {
     /**
@@ -33,6 +38,9 @@ class ShowController extends Controller
         return $this->render(['requests' => $requests]);
     }
 
+    /**
+     * Init view and layout for this controller
+     */
     protected function init()
     {
         $this->layout = 'default';

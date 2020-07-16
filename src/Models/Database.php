@@ -4,6 +4,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Database\Schema\Blueprint;
 
 /**
  * Class Database
@@ -11,21 +12,45 @@ use Illuminate\Database\Capsule\Manager as Capsule;
  */
 class Database
 {
+    private static $capsule = null;
+
+    protected function __construct() { }
+
+    public static function getInstance(): Capsule
+    {
+        if (self::$capsule === null) {
+            self::$capsule = new Capsule();
+            self::$capsule->addConnection([
+                'driver' => DB_DRIVER,
+                'host' => DB_HOST,
+                'database' => DB_NAME,
+                'username' => DB_USER,
+                'password' => DB_PASSWORD,
+                'charset' => 'utf8',
+                'collation' => 'utf8_unicode_ci',
+                'prefix' => '',
+            ]);
+            self::$capsule->bootEloquent();
+            self::$capsule->setAsGlobal();
+        }
+        return self::$capsule;
+    }
+
     /**
-     * Database constructor.
+     * Одиночки не должны быть восстанавливаемыми из строк.
      */
-    function __construct() {
-        $capsule = new Capsule;
-        $capsule->addConnection([
-            'driver'    => DBDRIVER,
-            'host'      => DBHOST,
-            'database'  => DBNAME,
-            'username'  => DBUSER,
-            'password'  => DBPASSWORD,
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-        ]);
-        $capsule->bootEloquent();
+    public function __wakeup()
+    {
+        throw new \Exception("Cannot unserialize a singleton.");
+    }
+
+    /**
+     * Одиночки не должны быть клонируемыми.
+     */
+    protected function __clone() { }
+
+    public static function getSchema()
+    {
+        return self::getInstance()::schema();
     }
 }

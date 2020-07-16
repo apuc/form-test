@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $('#submit').on('click', function (e) {
+        $('#submit').prop('disabled', true);
         var redirect = true;
 
         e.preventDefault();
@@ -8,30 +9,20 @@ $(document).ready(function() {
             type:     'POST',
             data: $("#request-form").serialize(),
             success: function(response) {
-                console.log(response);
                 result = $.parseJSON(response);
-                if (result.hasOwnProperty('name'))  {
-                    $('#nameMessage').html(result.name);
-                    redirect = false;
-                    changeStatus('#nameMessage', result.name, false);
-                } else {
-                    changeStatus('#nameMessage', 'Ok', true);
+                var fields = ['name', 'email', 'request'];
+                var result_property = [result.name, result.email, result.request];
+
+                len = fields.length;
+                for(i = 0; i < len; ++i) {
+                    selector = '#' + fields[i] + 'Message';
+                    if (result.hasOwnProperty(fields[i])) {
+                        redirect = false;
+                        changeStatus(selector, result_property[i], false);
+                    } else {
+                        changeStatus(selector, 'Ok', true);
+                    }
                 }
-                if (result.hasOwnProperty('email')) {
-                    $('#emailMessage').html(result.email);
-                    redirect = false;
-                    changeStatus('#emailMessage', result.email, false);
-                } else {
-                    changeStatus('#emailMessage', 'Ok', true);
-                }
-                if (result.hasOwnProperty('request')) {
-                    $('#requestMessage').html(result.request);
-                    redirect = false;
-                    changeStatus('#requestMessage', result.request, false);
-                } else {
-                    changeStatus('#requestMessage', 'Ok', true);
-                }
-                console.log(redirect);
                 if (redirect) {
                     Swal.fire({
                         position: 'top-end',
@@ -40,14 +31,14 @@ $(document).ready(function() {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    //sleep(1000);
-                    window.location.replace('/');
+                    window.location.replace('/show-request');
                 }
             },
             error: function (error) {
                 console.log(error);
             }
         });
+        $('#submit').prop('disabled', false);
         return false;
     });
 
@@ -63,5 +54,3 @@ $(document).ready(function() {
         $(selector).html(message);
     }
 });
-
-

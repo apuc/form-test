@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Msg box</title>
+    <link href="../css/validation.css" rel="stylesheet">
+    <script src="../js/validation.js"></script>
+</head>
+<body>
+<div class="form-box">
+    <div id="msg_box"></div>
+    <form action="#">
+        <p>
+            <label for="v_login">Логин</label>
+            <input id="v_login" name="v_login" type="text" class="vItem"
+                   data-er-box="#msg_box"
+                   data-sc="Верно"
+                   data-pt="Введите логин"
+                   data-er="Логин обязательное поле" required>
+        </p>
+        <p>
+            <label for="v_name">Имя</label>
+            <input id="v_name" name="v_name" type="text" class="vItem"
+                   data-er-box="#msg_box"
+                   data-sc="Верно"
+                   data-pt="Введите имя"
+                   data-er="Имя обязательное поле" required>
+        </p>
+        <p>
+            <label for="v_phone">Телефон</label>
+            <input id="v_phone" name="v_phone" type="text" class="vItem"
+                   data-er-box="#msg_box"
+                   data-sc="Верно"
+                   data-pt="Введите телефон"
+                   data-er="Телефон обязательное поле" required>
+        </p>
+        <p>
+            <input id="subm" type="submit" value="Отправить">
+        </p>
+    </form>
+</div>
+<script>
+    var valid = new Validation();
+    valid.init({
+        classItem: 'vItem',
+        eventElement: '#subm',
+        attributeErrorMessage: "data-er",
+        attributePromptMessage: 'data-pt',
+        attributeSuccessMessage: 'data-sc',
+        attributeErrorBox: "data-er-box"
+    });
+</script>
+</body>
+</html>

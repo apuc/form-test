@@ -6,7 +6,8 @@
         "eftec/bladeonehtml": "^1.5",
         "rakit/validation": "^1.2",
         "phpmailer/phpmailer": "^6.1",
-      "ext-json": "*"
+        "samejack/php-argv": "dev-master",
+        "ext-json": "*"
     },
     "config": {
         "platform": {

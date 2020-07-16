@@ -3,3 +3,6 @@ vendor/
 
 #IDEA files
 .idea
+
+#blade compiles
+compiles
