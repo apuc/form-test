@@ -18,7 +18,8 @@ class ErrorController extends Controller
      */
     public function actionError()
     {
-        return $this->render();
+        $error_code = http_response_code();
+        return $this->render(['error_code' => $error_code]);
     }
 
     /**

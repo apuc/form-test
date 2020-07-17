@@ -1,13 +1,14 @@
 $(document).ready(function() {
     $('#submit').on('click', function (e) {
-        $('#submit').prop('disabled', true);
         var redirect = true;
-
         e.preventDefault();
         $.ajax({
             url:      '/form-request/submit',
             type:     'POST',
             data: $("#request-form").serialize(),
+            beforeSend: function() {
+                $('#submit').prop('disabled', true);
+            },
             success: function(response) {
                 result = $.parseJSON(response);
                 var fields = ['name', 'email', 'request'];
@@ -23,6 +24,7 @@ $(document).ready(function() {
                         changeStatus(selector, 'Ok', true);
                     }
                 }
+                $('#submit').prop('disabled', false);
                 if (redirect) {
                     Swal.fire({
                         position: 'top-end',
@@ -38,7 +40,6 @@ $(document).ready(function() {
                 console.log(error);
             }
         });
-        $('#submit').prop('disabled', false);
         return false;
     });
 

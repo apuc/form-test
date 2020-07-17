@@ -5,10 +5,10 @@ namespace App\Controllers;
 
 
 use App\Core\Controller;
-use App\Mailer\Mailer;
 use App\Models\RequestModel;
 use App\Models\UserModel;
 use App\Requests\RequestRequest;
+use App\Services\Mailer;
 
 /**
  * Class ApiController

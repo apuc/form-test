@@ -4,7 +4,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Illuminate\Database\Schema\Blueprint;
 
 /**
  * Class Database
@@ -14,7 +13,14 @@ class Database
 {
     private static $capsule = null;
 
-    protected function __construct() { }
+    protected function __construct()
+    {
+    }
+
+    public static function getSchema()
+    {
+        return self::getInstance()::schema();
+    }
 
     public static function getInstance(): Capsule
     {
@@ -47,10 +53,7 @@ class Database
     /**
      * Одиночки не должны быть клонируемыми.
      */
-    protected function __clone() { }
-
-    public static function getSchema()
+    protected function __clone()
     {
-        return self::getInstance()::schema();
     }
 }

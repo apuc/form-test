@@ -11,7 +11,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class UserMigration extends Migration implements IMigrationable
 {
-    static public $table = 'user1';
+    public static $table = 'user1';
 
     public function up()
     {

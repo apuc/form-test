@@ -8,7 +8,7 @@ use samejack\PHP\ArgvParser;
 
 require_once(__DIR__ . '/vendor/autoload.php');
 require_once __DIR__ . '/config.php';
-define('ROOT_DIR', $_SERVER['DOCUMENT_ROOT'].'/');
+define('ROOT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/');
 
 Database::getInstance();
 
@@ -30,5 +30,5 @@ switch ($argv[1]) {
         echo 'All tables are down';
         break;
     default:
-        echo 'There is no such param...';
+        die('There are no such param...');
 }

@@ -11,7 +11,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CityMigration extends Migration implements IMigrationable
 {
-    static public $table = 'city1';
+    public static $table = 'city1';
 
     public function up()
     {

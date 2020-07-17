@@ -11,7 +11,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class RequestMigration extends Migration implements IMigrationable
 {
-    static public $table = 'request1';
+    public static $table = 'request1';
 
     public function up()
     {

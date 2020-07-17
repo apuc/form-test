@@ -51,8 +51,12 @@ abstract class Controller
             $view_path = ROOT_DIR . '/views/' . $this->view . '.blade.php';
             $layout_path = ROOT_DIR . '/views/layouts/' . $this->layout . '.blade.php';
             if (file_exists($view_path) AND file_exists($layout_path)) {
-                // call template engine Blade
-                return $this->blade->run($this->view . '.blade.php', $arr);
+                // call template engine 'Blade'
+                if ($arr === null) {
+                    return $this->blade->run($this->view . '.blade.php');
+                } else {
+                    return $this->blade->run($this->view . '.blade.php', $arr);
+                }
             } else {
                 throw new ViewException("Layout or views are not exist...");
             }

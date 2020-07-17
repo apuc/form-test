@@ -7,7 +7,6 @@ namespace App\Controllers;
 use App\Core\Controller;
 use App\Models\CityModel;
 use App\Models\RequestModel;
-use App\Requests\RequestRequest;
 
 /**
  * Class ShowController

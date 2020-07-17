@@ -1,8 +1,8 @@
-#composer dependencies
+# Composer dependencies
 vendor/
 
-#IDEA files
+# IDEA files
 .idea
 
-#blade compiles
+# 'Blade' template engine compiles
 compiles
